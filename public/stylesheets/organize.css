@@ -1,0 +1,47 @@
+body { font-family: sans-serif;}
+
+ul.cards {
+  list-style-type:none;
+  float:left;
+  margin:0; padding:0;
+  display:block;
+  width:100%;
+}
+ul.cards > li {
+  display:block;
+  float:left;
+  margin:0.25%; padding:0.2em; background-color:#ff0; border:1px solid #440;
+  overflow:hidden;
+}
+.cards h2 {
+}
+
+.cards h2, .cards p { padding:0; margin:2px;}
+ul.cards ul.discussion { list-style-type:none; margin:0; padding:0; margin-left:1em; border:1px solid black; float:left;}
+ul.cards ul.discussion li{
+  border:none; float:none; display:none; font-size:1em;
+  width:inherit;
+}
+ul.cards li.selected {
+  background-color:#f80;
+}
+
+/* card sizes */
+ul.size1 li { width: 15em; height:10em; font-size:0.5em;}
+ul.size2 li { width: 12em; height:8em; font-size:0.7em;}
+ul.size3 li { width: 12em; height:8em; font-size:0.8em;}
+ul.size4 li { width: 12em; height:8em; font-size:1em;}
+ul.size5 li { width: 15em; height:10em; font-size:1em;}
+ul.size6 li { width: 15em; height:10em; font-size:1.2em;}
+ul.size7 li { width: 90%; }
+ul.size8 li { width: 90%; }
+ul.size9 li { width: 90%; }
+ul.size10 li { width: 90%; }
+/* card features  */
+
+.size1 p, .size2 p { display:none; }
+.size3 p.metadata, .size4 p.metadata { display:none;}
+ul.size6 ul.discussion li { display:block;}
+
+ul.sizr { list-style-type:none;}
+ul.sizr li { display:inline;}
