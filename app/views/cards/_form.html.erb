@@ -4,12 +4,20 @@
   <%= javascript_include_tag "calendariffic/lang/calendar-de.js" %>
 <%- end -%>
 <fieldset>
-  <label for="card_title">Title*</label>
-  <%= form.text_field :title %>
-  <label for="card_description">Description</label>
-  <%= form.text_area :description %>
-  <label for="card_effort">Effort</label>
-  <%= form.text_field :effort %>
-  <label for="timestamp">Timestamp</label>
-	<%= calendar_tag(@card, :timestamp) %>
+  <p>  
+    <label for="card_title">Title*</label>
+    <%= form.text_field :title %>
+  </p>
+  <p>  
+    <label for="card_description">Description</label>
+    <%= form.text_area :description %>
+  </p>  
+  <p>  
+    <label for="card_effort">Effort</label>
+    <%= form.text_field :effort %>
+  </p>  
+  <p>  
+    <label for="timestamp">Timestamp</label>
+	  <%= calendar_tag(@card, :timestamp) %>
+  </p>
 </fieldset>
