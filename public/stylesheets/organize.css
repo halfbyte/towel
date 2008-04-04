@@ -10,10 +10,12 @@ ul.cards {
 ul.cards > li {
   display:block;
   float:left;
-  margin:0.25%; padding:0.2em; background-color:#ff0; border:1px solid #440;
+  margin:0.25%; padding:0.2em; background:#ff0 url(/images/backgrounds/karopapier.png) top left; border:1px solid #440;
   overflow:hidden;
 }
 .cards h2 {
+  font-size:1.2em;
+  border-bottom:1px solid red;
 }
 
 .cards h2, .cards p { padding:0; margin:2px;}
@@ -27,20 +29,14 @@ ul.cards li.selected {
 }
 
 /* card sizes */
-ul.size1 li { width: 15em; height:10em; font-size:0.5em;}
-ul.size2 li { width: 12em; height:8em; font-size:0.7em;}
-ul.size3 li { width: 12em; height:8em; font-size:0.8em;}
-ul.size4 li { width: 12em; height:8em; font-size:1em;}
-ul.size5 li { width: 15em; height:10em; font-size:1em;}
-ul.size6 li { width: 15em; height:10em; font-size:1.2em;}
-ul.size7 li { width: 90%; }
-ul.size8 li { width: 90%; }
-ul.size9 li { width: 90%; }
-ul.size10 li { width: 90%; }
+ul.size1 li { width: 15em; height:10em; font-size:0.7em;}
+ul.size2 li { width: 15em; height:10em; font-size:1em;}
+ul.size3 li { width: 21em; height:14em; font-size:1em;}
+ul.size4 li { width: 24em; height:16em; font-size:1em;}
 /* card features  */
 
 .size1 p, .size2 p { display:none; }
-.size3 p.metadata, .size4 p.metadata { display:none;}
+.size3 p.metadata { display:none;}
 ul.size6 ul.discussion li { display:block;}
 
 ul.sizr { list-style-type:none;}

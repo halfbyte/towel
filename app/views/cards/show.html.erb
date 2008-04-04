@@ -5,3 +5,4 @@
 <p><%=h @card.effort %></p>
 
 <%= link_to('Edit this card', edit_project_card_path(@project, @card)) %>
+<%= link_to('Back to unfinished cards', project_cards_path(@project)) %>

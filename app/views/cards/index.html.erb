@@ -1,20 +1,28 @@
 <%- content_for :head do -%>
   <script type="text/javascript" charset="utf-8">
-    var old_size = "1"
+    var old_size = "<%= card_size %>"
     function setSize(size) {
-
       $("cardList").removeClassName("size" + old_size).addClassName("size" + size)
       old_size = size
+      new Ajax.Request('<%= set_card_size_user_path(current_user) %>', {parameters: {card_size:size, authenticity_token: '<%= form_authenticity_token %>'}})
     }
     
     document.observe('dom:loaded', function() { 
-      Sortable.create('cardList', {constraint:false, overlap:'horizontal'});
+      Sortable.create('cardList', { constraint:false, 
+                                    overlap:'horizontal', 
+                                    onUpdate: function(list) {
+                                      new Ajax.Request('<%= order_project_cards_path %>', {
+                                        parameters: Sortable.serialize(list) + "&authenticity_token=<%= form_authenticity_token %>",
+                                        method: 'put'
+                                      })
+                                    }
+      });
       $$('ul.cards li a.cardLink').each(function(cardLink) {
         cardLink.observe('click', function(event) {
          console.log(Event.element(event))
          event.stop()
          new Ajax.Updater('cardShow', cardLink.href, {method:'get', onComplete: function() {
-           $('cardList').hide()
+           $('cardListView').hide()
            $('cardShow').visualEffect('appear')
          }})
         })
@@ -22,22 +30,22 @@
     }); 
  	 
   </script>
-  <script type="text/javascript" charset="utf-8" src="scripts/jquery-1.2.3.min.js"></script>
   <%= stylesheet_link_tag 'organize' %>
 <%- end -%>
-<h1>Organize '<%= h(@project.name) %>'</h1>
+<h1>All unfinished cards for project '<%= h(@project.name) %>'</h1>
 <ul class="sizr">
-  <%- 1.upto(6) do |i| -%>
+  <%- 1.upto(4) do |i| -%>
     <li><%= link_to_function i, "setSize('#{i}')" %></li>
   <%- end -%>
   <li><%= link_to "new card", new_project_card_path(@project) %></li>
+  <li><%= link_to "project view", @project %></li>
 </ul>
 
-<div id="cardList">
+<div id="cardListView">
   <h2>Cards</h2>
-<ul class="cards size1" id="cardList">
+<ul class="cards size<%= card_size %>" id="cardList">
   <%- @cards.each do |card| -%>
-  <li>
+  <li id="card_<%= card.id  %>">
     <h2><%= link_to h(card.title), project_card_path(@project, card), :class => 'cardLink' %></h2>
     <p class="description"><%= simple_format h(card.description) %>
     </p>

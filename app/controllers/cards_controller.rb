@@ -4,7 +4,12 @@ class CardsController < ApplicationController
   before_filter :load_project
   before_filter :load_card, :only => [:show,:edit,:update,:destroy]
 
+  def index
+    @cards = @project.cards.find(:all, :conditions => 'finished_at IS NULL', :order => 'position ASC')
+  end
+
   def show
+    render :partial => 'organize/huge_card', :layout => false and return if (request.xhr?)
   end
 
   def new
@@ -37,6 +42,15 @@ class CardsController < ApplicationController
       render :action => 'edit'
     end
   end
+  
+  def order 
+    ids = params[:cardList]
+    ids.each_with_index do |id, i|
+      Card.find(id).update_attribute(:position, i)
+    end
+    render :nothing => true
+  end
+  
 
   def destroy
     @card.destroy

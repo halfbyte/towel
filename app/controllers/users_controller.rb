@@ -11,6 +11,14 @@ class UsersController < ApplicationController
   def new
   end
 
+  def set_card_size
+    card_size = params[:card_size].to_i
+    card_size = 1 if card_size < 1
+    card_size = 4 if card_size > 4
+    session[:card_size] = card_size
+    render :nothing => true
+  end
+
   def create
     cookies.delete :auth_token
     # protects against session fixation attacks, wreaks havoc with request forgery protection.

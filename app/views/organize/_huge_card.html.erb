@@ -1,0 +1,4 @@
+<div class="hugeCard">
+  <h1><%=h @card.title %> <%= link_to_function('X', "$('cardShow').visualEffect('fade');$('cardListView').show()") %></h1>
+  <%= simple_format(h(@card.description)) %>
+</div>

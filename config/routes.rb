@@ -4,9 +4,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.activate          'activate/:activation_code', :controller => 'users', :action => 'activate'
   map.recover_password  '/users/recover_password',   :controller => 'users', :action => 'recover_password'
-  map.resources :users
+  map.resources :users, :member => { :set_card_size => :post }
   map.resources :projects do |projects|
-    projects.resources :cards
+    projects.resources :cards, :collection => {:order => :put}
   end
   
   map.admin 'admin', :controller => 'admin', :action => 'index'

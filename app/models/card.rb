@@ -16,6 +16,8 @@
 
 class Card < ActiveRecord::Base
 
+  acts_as_list :scope => 'project_id = #{project_id} AND finished_at IS NULL'
+
   attr_accessor :timestamp
   attr_protected :project_id
 
